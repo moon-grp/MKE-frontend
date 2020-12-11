@@ -2,7 +2,9 @@
   <div>
     <div id="boxSpace">
       <v-row class="justify-center mb-8">
-        <div class="fnt text-capitalize">sign in to admin dashboard<span class="coll">.</span></div>
+        <div class="fnt text-capitalize">
+          sign in to admin dashboard<span class="coll">.</span>
+        </div>
       </v-row>
       <v-row class="justify-center">
         <div class="divl">
@@ -35,6 +37,12 @@
         </div>
       </v-row>
     </div>
+    <v-snackbar v-model="snackbar" :timeout="timeout" color="success">
+      {{ msg }}
+    </v-snackbar>
+    <v-snackbar v-model="snackbarErr" :timeout="timeout" color="error">
+      {{ msg }}
+    </v-snackbar>
   </div>
 </template>
 
@@ -47,13 +55,47 @@ export default {
 
   validations: {
     password: { required, minLength: minLength(8) },
-
-    email: { required, email },
   },
   data() {
     return {
       password: null,
+      loading: false,
+      snackbar: false,
+      snackbarErr: false,
+      timeout: 7000,
+      msg: '',
     }
+  },
+  methods: {
+    async signIn() {
+      this.$v.$touch()
+      if (!this.$v.$invalid) {
+        this.loading = true
+        try {
+          const res = await this.$axios.$post(
+            'https://mrkayenterprise.herokuapp.com/api/v1/admin/signin',
+            {
+              password: this.password,
+            }
+          )
+          console.log(res)
+          // localStorage.setItem('token', JSON.stringify(res.token))
+          this.$cookies.set('token', res.token, {
+            path: '/',
+            maxAge: 60 * 60 * 24 * 7,
+          })
+          this.msg = res.message
+          this.snackbar = true
+          this.$router.push({ name: 'admin-dashboard' })
+          this.loading = false
+        } catch (error) {
+          console.log(error.response)
+          this.msg = error.response.data
+          this.snackbarErr = true
+          this.loading = false
+        }
+      }
+    },
   },
   computed: {
     passwordErros() {

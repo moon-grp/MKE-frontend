@@ -4,7 +4,7 @@
       <v-app-bar color="#FFFFFF" raised>
         <div class="text-capitalize fnt">dashboard..</div>
         <v-spacer></v-spacer>
-        <nuxt-link to="/">
+        <nuxt-link to="/admin/dashboard/createproduct">
           <v-btn rounded color="#6C63FF" dark text class="text-capitalize mx-2"
             >create product</v-btn
           >
