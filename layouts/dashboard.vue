@@ -2,7 +2,9 @@
   <v-app dark>
     <div>
       <v-app-bar color="#FFFFFF" raised>
-        <div class="text-capitalize fnt">dashboard..</div>
+        <nuxt-link to="/admin/dashboard">
+          <div class="text-capitalize fnt">dashboard..</div>
+        </nuxt-link>
         <v-spacer></v-spacer>
         <nuxt-link to="/admin/dashboard/createproduct">
           <v-btn rounded color="#6C63FF" dark text class="text-capitalize mx-2"

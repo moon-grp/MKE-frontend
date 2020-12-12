@@ -1,31 +1,89 @@
 <template>
   <div>
-    <v-card>
-      <v-img
-        :src="cards.src"
-        class="white--text align-end"
-        gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-        height="200px"
-      >
-        <v-card-title v-text="cards.title"></v-card-title>
-      </v-img>
+    <v-row class="mt-4">
+      <v-col cols="3" v-for="item in getProducts" :key="item._id.$oid">
+        <v-card max-height="500">
+          <v-img
+            :src="item.imgUrl"
+            class="white--text align-end"
+            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+            height="200px"
+            contain
+          >
+            <v-card-title class="text-capitalize">{{
+              item.productname
+            }}</v-card-title>
+          </v-img>
 
-      <v-card-actions>
-        <v-spacer></v-spacer>
+          <v-list-item two-line>
+            <v-list-item-content>
+              <v-list-item-title>Description:</v-list-item-title>
+              <v-list-item-subtitle class="text-capitalize">{{
+                item.description
+              }}</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
 
-        <v-btn icon>
-          <v-icon>mdi-heart</v-icon>
-        </v-btn>
+          <v-list-item two-line>
+            <v-list-item-content>
+              <v-list-item-title>Availability:</v-list-item-title>
+              <v-list-item-subtitle class="text-capitalize">{{
+                item.available
+              }}</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
 
-        <v-btn icon>
-          <v-icon>mdi-bookmark</v-icon>
-        </v-btn>
+          <v-list-item two-line>
+            <v-list-item-content>
+              <v-list-item-title>Price:</v-list-item-title>
+              <v-list-item-subtitle class="text-capitalize"
+                >₦ {{ item.frameprice }}</v-list-item-subtitle
+              >
+            </v-list-item-content>
+          </v-list-item>
 
-        <v-btn icon>
-          <v-icon>mdi-share-variant</v-icon>
-        </v-btn>
-      </v-card-actions>
-    </v-card>
+          <v-list-item two-line>
+            <v-list-item-content>
+              <v-list-item-title>Slash Price:</v-list-item-title>
+              <v-list-item-subtitle class="text-capitalize"
+                >₦ {{ item.slashprice }}</v-list-item-subtitle
+              >
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-dialog v-model="dialog" persistent max-width="290">
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn icon v-bind="attrs" v-on="on">
+                  <v-icon>mdi-border-color</v-icon>
+                </v-btn>
+              </template>
+              <v-card>
+                <v-card-title class="caption">
+                  Sure you want to delete <b>{{item.productname}} </b> ?
+                </v-card-title>
+                
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="green darken-1" text @click="dialog = false">
+                    yes
+                  </v-btn>
+                  <v-btn color="green darken-1" text @click="dialog = false">
+                    no
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+
+            <v-btn icon>
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -34,26 +92,28 @@ export default {
   layout: 'dashboard',
   data() {
     return {
-      cards: [
-        {
-          title: 'Pre-fab homes',
-          src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
-          flex: 12,
-        },
-        {
-          title: 'Favorite road trips',
-          src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg',
-          flex: 6,
-        },
-        {
-          title: 'Best airlines',
-          src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-          flex: 6,
-        },
-      ],
+       dialog: false,
+    
+
     }
+  },
+  async asyncData({ $axios }) {
+    const getProducts = await $axios.$get(
+      'https://mrkayenterprise.herokuapp.com/api/v1/admin/viewproducts'
+    )
+
+    console.log(getProducts)
+
+    return { getProducts }
   },
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+}
+</style>
