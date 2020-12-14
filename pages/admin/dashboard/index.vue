@@ -54,36 +54,65 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-dialog v-model="dialog" persistent max-width="290">
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" v-on="on">
-                  <v-icon>mdi-border-color</v-icon>
-                </v-btn>
-              </template>
-              <v-card>
-                <v-card-title class="caption">
-                  Sure you want to delete <b>{{item.productname}} </b> ?
-                </v-card-title>
-                
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="green darken-1" text @click="dialog = false">
-                    yes
-                  </v-btn>
-                  <v-btn color="green darken-1" text @click="dialog = false">
-                    no
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
-
             <v-btn icon>
+              <v-icon>mdi-border-color</v-icon>
+            </v-btn>
+
+            <v-btn icon @click="getProductId(item._id.$oid)">
               <v-icon>mdi-delete</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
+
+    <!-- dialogs -->
+    <v-dialog v-model="dialogDelete" persistent max-width="290">
+      <v-card>
+        <v-card-title class="caption">
+          Sure you want to delete <b> </b> ?
+        </v-card-title>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" text @click="deleteProduct()">
+            yes
+          </v-btn>
+          <v-btn color="red darken-1" text @click="dialogDelete = false">
+            no
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+     <v-dialog v-model="dialogEdit" persistent max-width="290">
+      <v-card>
+        <v-card-title class="caption">
+          Sure you want to delete <b> </b> ?
+        </v-card-title>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" text @click="deleteProduct()">
+            yes
+          </v-btn>
+          <v-btn color="red darken-1" text @click="dialogDelete = false">
+            no
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+
+
+
+    <!-- pop up -->
+    <v-snackbar v-model="snackbar" :timeout="timeout" color="success">
+      {{ msg }}
+    </v-snackbar>
+    <v-snackbar v-model="snackbarErr" :timeout="timeout" color="error">
+      {{ msg }}
+    </v-snackbar>
   </div>
 </template>
 
@@ -92,9 +121,13 @@ export default {
   layout: 'dashboard',
   data() {
     return {
-       dialog: false,
-    
-
+      dialogEdit: false,
+      dialogDelete: false,
+      snackbar: false,
+      snackbarErr: false,
+      timeout: 7000,
+      msg: '',
+      pid: "",
     }
   },
   async asyncData({ $axios }) {
@@ -105,6 +138,31 @@ export default {
     console.log(getProducts)
 
     return { getProducts }
+  },
+  methods: {
+    async deleteProduct() {
+      try {
+        this.dialogDelete = false
+        const res = await this.$axios.$delete(
+          `https://mrkayenterprise.herokuapp.com/api/v1/admin/deleteproduct/${this.pid}`
+        )
+        console.log(res)
+        this.msg = 'Product deleted succesfully...'
+        this.snackbar = true
+        location.reload()
+      } catch (error) {
+        this.dialogDelete = false
+        console.log(error.response)
+        this.msg = error.response.data
+        this.snackbarErr = true
+        
+      }
+    },
+    getProductId(id) {
+      this.pid = id
+      console.log(this.pid)
+      this.dialogDelete = true
+    },
   },
 }
 </script>
