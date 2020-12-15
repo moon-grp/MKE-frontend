@@ -54,7 +54,18 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn icon>
+            <v-btn
+              icon
+              @click="
+                getProductDetails(
+                  item._id.$oid,
+                  item.productname,
+                  item.frameprice,
+                  item.slashprice,
+                  item.description
+                )
+              "
+            >
               <v-icon>mdi-border-color</v-icon>
             </v-btn>
 
@@ -85,26 +96,74 @@
       </v-card>
     </v-dialog>
 
-     <v-dialog v-model="dialogEdit" persistent max-width="290">
-      <v-card>
-        <v-card-title class="caption">
-          Sure you want to delete <b> </b> ?
-        </v-card-title>
+    <v-dialog v-model="dialogEdit" persistent fullscreen hide-overlay>
+      <v-card class="mx-auto my-4" min-width="300">
+        <v-toolbar dark color="primary">
+          <v-btn icon dark @click="dialogEdit = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Edit ({{ productName }})</v-toolbar-title>
+        </v-toolbar>
+        <v-text-field
+          label="product name"
+          outlined
+          class="mx-8 mt-8 text-capitalize"
+          color="#6C63FF"
+          v-model="productName"
+        ></v-text-field>
+
+        <v-textarea
+          outlined
+          name="input-7-4"
+          label="Product description"
+          class="mx-8 mt-2 text-capitalize"
+          color="#6C63FF"
+          v-model="productDescription"
+        ></v-textarea>
+
+        <v-text-field
+          label="product price"
+          outlined
+          class="mx-8 mt-2 text-capitalize"
+          color="#6C63FF"
+          type="number"
+          prefix="₦"
+          v-model="productPrice"
+        ></v-text-field>
+
+        <v-text-field
+          label="product slash price"
+          outlined
+          class="mx-8 mt-2 text-capitalize"
+          color="#6C63FF"
+          type="number"
+          v-model="productSlashPrice"
+          prefix="₦"
+        ></v-text-field>
+
+        <v-file-input
+          accept="image/*"
+          label="Product image"
+          class="mx-8 mt-2"
+          color="#6C63FF"
+          ref="sI"
+          v-model="file"
+        ></v-file-input>
 
         <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="green darken-1" text @click="deleteProduct()">
-            yes
-          </v-btn>
-          <v-btn color="red darken-1" text @click="dialogDelete = false">
-            no
+          <v-btn
+            text
+            dark
+            color="#6C63FF"
+            @click="uploadProduct"
+            :loading="loading"
+            class="ml-6 mt-2"
+          >
+            update product
           </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-
-
-
 
     <!-- pop up -->
     <v-snackbar v-model="snackbar" :timeout="timeout" color="success">
@@ -127,7 +186,20 @@ export default {
       snackbarErr: false,
       timeout: 7000,
       msg: '',
-      pid: "",
+      pid: '',
+      loading: false,
+      productPrice: null,
+      productName: null,
+      productDescription: null,
+      productSlashPrice: null,
+      productImage: '',
+      available: '',
+      productPriceE: null,
+      productNameE: null,
+      productDescriptionE: null,
+      productSlashPriceE: null,
+      productImage: '',
+      file: [],
     }
   },
   async asyncData({ $axios }) {
@@ -146,22 +218,59 @@ export default {
         const res = await this.$axios.$delete(
           `https://mrkayenterprise.herokuapp.com/api/v1/admin/deleteproduct/${this.pid}`
         )
-        console.log(res)
+        //  console.log(res)
         this.msg = 'Product deleted succesfully...'
         this.snackbar = true
         location.reload()
       } catch (error) {
         this.dialogDelete = false
-        console.log(error.response)
+        // console.log(error.response)
         this.msg = error.response.data
         this.snackbarErr = true
-        
       }
     },
     getProductId(id) {
       this.pid = id
-      console.log(this.pid)
+      //console.log(this.pid)
       this.dialogDelete = true
+    },
+    getProductDetails(id, name, price, slash, description) {
+      this.pid = id
+      this.productPrice = price
+      this.productName = name
+      this.productDescription = description
+      this.productSlashPrice = slash
+
+      this.dialogEdit = true
+    },
+    async uploadProduct() {
+      const fd = new FormData()
+      fd.append('frame_img', this.file)
+      fd.append('framePrice', this.productPrice)
+      fd.append('productName', this.productName)
+      const available = true
+      fd.append('available', available)
+      fd.append('slashPrice', this.productSlashPrice)
+      fd.append('description', this.productDescription)
+
+      this.loading = true
+      try {
+        const res = await this.$axios.$post(
+          `https://mrkayenterprise.herokuapp.com/api/v1/admin/editproduct/${this.pid}`,
+
+          fd
+        )
+        console.log(res)
+        this.msg = 'Product Updated succesfully...'
+        this.snackbar = true
+        this.loading = false
+        location.reload()
+      } catch (error) {
+        console.log(error.response)
+        this.msg = error.response.data
+        this.snackbarErr = true
+        this.loading = false
+      }
     },
   },
 }
