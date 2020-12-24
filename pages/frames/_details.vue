@@ -12,9 +12,7 @@
         </div>
       </v-col>
       <v-col cols="4">
-        <div class="text-capitalize h2">
-          {{ products.productname }}.
-        </div>
+        <div class="text-capitalize h2">{{ products.productname }}.</div>
 
         <div class="text-capitalize mt-2 body-1">
           {{ products.description }}
@@ -27,24 +25,20 @@
           slash price: ₦{{ products.slashprice }}
         </div>
 
-      <div class="mt-2">
-        <v-slider
-          v-model="value"
-          label="How many?"
-          step="1"
-          thumb-label="always"
-          :thumb-size="18"
-          color="#6c63ff"
-        ></v-slider>
+        <div class="mt-2">
+          <v-slider
+            v-model="value"
+            label="How many?"
+            step="1"
+            thumb-label="always"
+            :thumb-size="18"
+            color="#6c63ff"
+          ></v-slider>
         </div>
         <div>
-             <v-btn
-              x-large
-              color="#6c63ff"
-              dark
-            >
-              buy {{products.productname}}
-            </v-btn>
+          <v-btn x-large color="#6c63ff" dark @click="getDetails">
+            proceed to buy {{ products.productname }}
+          </v-btn>
         </div>
       </v-col>
     </v-row>
@@ -52,6 +46,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   layout: 'frames',
   data() {
@@ -59,6 +54,8 @@ export default {
       id: this.$route.params.details,
       products: '',
       value: 0,
+      prodName: '',
+      prodPrice: '',
     }
   },
 
@@ -66,6 +63,18 @@ export default {
     this.getProduct()
   },
   methods: {
+    ...mapMutations({
+      addProductDetails: 'addProductDetails',
+    }),
+    getDetails() {
+      let prod = {
+        productName: this.products.productname,
+        price: this.products.frameprice,
+        qty: this.value,
+      }
+      this.addProductDetails(prod)
+      this.$router.push({ name: 'checkout' })
+    },
     async getProduct() {
       // const id = route.params.details
       const getProducts = await this.$axios.$get(
