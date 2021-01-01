@@ -1,12 +1,22 @@
 <template>
   <div>
-    {{details.productName}}
     <v-row class="justify-center mt-6 fnt mb-8">
       <v-card class="mx-auto" min-width="500">
         <v-text-field
-          label="Email"
+          label="Name"
           outlined
           class="mx-8 mt-8 text-capitalize"
+          color="#6C63FF"
+          v-model="name"
+          :error-messages="nameError"
+          @input="$v.name.$touch()"
+          @blur="$v.name.$touch()"
+        ></v-text-field>
+
+        <v-text-field
+          label="Email"
+          outlined
+          class="mx-8 mt-2 text-capitalize"
           color="#6C63FF"
           v-model="email"
           :error-messages="emailError"
@@ -43,7 +53,7 @@
             outlined
             dark
             color="#6C63FF"
-            @click="uploadProduct"
+            @click="openPaystack"
             :loading="loading"
             class="ml-6 mt-2 text-capitalize"
           >
@@ -62,30 +72,44 @@
 </template>
 
 <script>
-import {mapState} from "vuex"
+import axios from 'axios'
+import { mapState } from 'vuex'
 import { validationMixin } from 'vuelidate'
 import { required, minLength, email, sameAs } from 'vuelidate/lib/validators'
 export default {
   layout: 'frames',
+
+  head() {
+    return {
+      script: [{ src: 'https://js.paystack.co/v1/inline.js' }],
+    }
+  },
   mixins: [validationMixin],
 
   validations: {
     email: { required },
     address: { required },
     phoneNumber: { required },
+    name: { required },
   },
   data() {
     return {
       email: '',
       address: '',
       phoneNumber: '',
+      name: '',
     }
   },
   computed: {
     ...mapState({
-      details: state => state.productDetails
-    }
-    ),
+      details: (state) => state.productDetails,
+    }),
+    nameError() {
+      const errors = []
+      if (!this.$v.name.$dirty) return errors
+      !this.$v.name.required && errors.push('name is required')
+      return errors
+    },
     emailError() {
       const errors = []
       if (!this.$v.email.$dirty) return errors
@@ -105,5 +129,60 @@ export default {
       return errors
     },
   },
+  methods: {
+    openPaystack() {
+      console.log(this.details)
+      var name = this.name
+      var email = this.email
+      var phone = this.phoneNumber
+      var address = this.address
+      var qtr = this.details.qty
+      var productname = this.details.productName
+      var key = process.env.pAPI_KEY
+
+      var handler = PaystackPop.setup({
+        key: key,
+        email: 'olumidemm@gmail.com',
+        amount: this.details.price,
+        ref: '' + Math.floor(Math.random() * 1000000000 + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+        metadata: {
+          custom_fields: [
+            {
+              display_name: 'Mobile Number',
+              variable_name: 'mobile_number',
+              value: '+2348012345678',
+            },
+          ],
+        },
+        callback: async function (response) {
+          //  alert('success. transaction ref is ' + response.reference);
+          axios
+            .post(
+              `https://mrkayenterprise.herokuapp.com/api/v1/user/payproduct`,
+              {
+                referenceCode: response.reference,
+                customerName: name,
+                customerEmail: email,
+                customerPhone: phone,
+                customerAddress: address,
+                qtr: qtr,
+                productName: productname,
+              }
+            )
+            .then((res) => {
+              console.log(res)
+            })
+
+          console.log(name)
+        },
+        onClose: function () {},
+      })
+      handler.openIframe()
+    },
+
+  },
+  created(){
+    console.log(process.env.pAPI_KEY)
+  }
 }
 </script>
