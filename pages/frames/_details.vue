@@ -1,7 +1,7 @@
 <template>
   <div class="productText">
     <v-row>
-      <v-col cols="8">
+      <v-col lg="8" md="8" sm="12">
         <div>
           <v-img
             max-height="450"
@@ -11,7 +11,7 @@
           ></v-img>
         </div>
       </v-col>
-      <v-col cols="4">
+      <v-col lg="2" md="4" sm="12">
         <div class="text-capitalize h2">{{ products.productname }}.</div>
 
         <div class="text-capitalize mt-2 body-1">
@@ -32,17 +32,17 @@
             step="1"
             thumb-label="always"
             :thumb-size="18"
-            color="#6c63ff"
+            color="#13274a"
           ></v-slider>
         </div>
         <div>
-          <v-btn x-large color="#6c63ff" dark @click="getDetails">
+          <v-btn x-large color="#13274a" dark @click="getDetails">
             proceed to buy {{ products.productname }}
           </v-btn>
         </div>
       </v-col>
     </v-row>
-    <loading  />
+    <loading  v-if="loading"/>
   </div>
 </template>
 

@@ -4,25 +4,25 @@
 
       
     
-      <v-app-bar color="#FFFFFF" flat>
+      <v-app-bar color="#13274a" flat>
         <nuxt-link to="/frames">
           <div class="text-capitalize fnt">frames..</div>
         </nuxt-link>
         <v-spacer></v-spacer>
         <nuxt-link to="/frames/collections">
-          <v-btn rounded color="#6C63FF" dark text class="text-capitalize mx-2"
+          <v-btn rounded color="#ecf4ff" dark text class="text-capitalize mx-2"
             >collections</v-btn
           >
         </nuxt-link>
 
         <nuxt-link to="/frames">
-          <v-btn rounded color="#6C63FF" dark text class="text-capitalize mx-2"
+          <v-btn rounded color="#ecf4ff" dark text class="text-capitalize mx-2"
             >build-up</v-btn
           >
         </nuxt-link>
 
         <nuxt-link to="/frames">
-          <v-btn rounded color="#6C63FF" dark text class="text-capitalize mx-2"
+          <v-btn rounded color="#ecf4ff" dark text class="text-capitalize mx-2"
             >contact</v-btn
           >
         </nuxt-link>
@@ -87,7 +87,7 @@ a {
 .fnt {
   font-family: 'Poppins', sans-serif;
   font-size: 20px;
-  color: #6c63ff;
+  color:#ecf4ff;
 }
 
 </style>

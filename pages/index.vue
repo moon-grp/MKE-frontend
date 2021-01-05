@@ -16,9 +16,9 @@
       <v-img
         src="/mkep1.jpeg"
         contain
-        height="150"
-        width="150"
-        class="position animate__animated animate__bounce"
+        height="200"
+        width="200"
+        class="position "
       >
       </v-img>
     </v-row>
@@ -46,12 +46,28 @@ export default {
 }
 
 .position {
-  width: 80%;
+  width: 40%;
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: bounce;
-  animation-duration: 10s;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+.bounce-1 {
+  animation-name: bounce-1;
+  animation-timing-function: linear;
+}
+@keyframes bounce-1 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 </style>
