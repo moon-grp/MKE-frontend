@@ -1,96 +1,52 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
-    </v-app-bar>
-    <v-main>
-      <v-container>
-        <nuxt />
-      </v-container>
-    </v-main>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer
-      :absolute="!fixed"
-      app
-    >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+    <div>
+
+      
+    
+      <v-app-bar color="#13274a" flat>
+        <nuxt-link to="/frames">
+          <div class="text-capitalize fnt">Mr Kay Enterprise</div>
+        </nuxt-link>
+        <v-spacer></v-spacer>
+        <nuxt-link to="/frames">
+          <v-btn rounded color="#ecf4ff" dark text class="text-capitalize mx-2"
+            >frames</v-btn
+          >
+        </nuxt-link>
+
+        <nuxt-link to="/frames">
+          <v-btn rounded color="#ecf4ff" dark text class="text-capitalize mx-2"
+            >Entertainment</v-btn
+          >
+        </nuxt-link>
+
+        <nuxt-link to="/Autos">
+          <v-btn rounded color="#ecf4ff" dark text class="text-capitalize mx-2"
+            >Autos</v-btn
+          >
+        </nuxt-link>
+      </v-app-bar>
+      <v-main>
+       
+        
+          <nuxt />
+      
+      </v-main>
+    </div>
   </v-app>
 </template>
 
 <script>
+import Loading from '~/components/loading.vue'
+
+
 export default {
-  data () {
+  components: {
+    Loading
+    
+  },
+  data() {
     return {
       clipped: false,
       drawer: false,
@@ -99,19 +55,39 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'Welcome',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
-          to: '/inspire'
-        }
+          to: '/inspire',
+        },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Vuetify.js',
     }
-  }
+  },
 }
 </script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #ecf4ff;
+}
+a {
+  text-decoration: none;
+}
+
+.fnt {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  color: #ecf4ff;
+}
+
+</style>

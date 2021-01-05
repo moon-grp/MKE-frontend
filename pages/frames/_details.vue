@@ -42,13 +42,18 @@
         </div>
       </v-col>
     </v-row>
+    <loading  />
   </div>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
+import Loading from '~/components/loading.vue'
 export default {
   layout: 'frames',
+  components: {
+    Loading,
+  },
   data() {
     return {
       id: this.$route.params.details,
@@ -56,6 +61,7 @@ export default {
       value: 0,
       prodName: '',
       prodPrice: '',
+      loading: false,
     }
   },
 
@@ -77,11 +83,14 @@ export default {
     },
     async getProduct() {
       // const id = route.params.details
+      this.loading = true
       const getProducts = await this.$axios.$get(
         `https://mrkayenterprise.herokuapp.com/api/v1/user/viewproduct/${this.id}`
       )
       console.log(getProducts)
+
       this.products = getProducts
+      this.loading = false
     },
   },
 }

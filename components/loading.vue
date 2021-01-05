@@ -26,27 +26,45 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
 export default {
-  components: {
-    Logo,
-    VuetifyLogo,
+  data() {
+    return {
+      dialog: true,
+      loading: false,
+    }
+  },
+  methods: {
+    start() {
+      this.loading = true
+    },
+    finish() {
+      this.loading = false
+    },
   },
 }
 </script>
 
 <style scoped>
-.bg {
-  background: #13274a;
+.v-progress-circular {
+  margin: 1rem;
+}
+body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  background: red;
+}
+.bg {
+  background: #13274a;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .position {
-  width: 80%;
+   width: 80%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -54,4 +72,7 @@ export default {
   animation: bounce;
   animation-duration: 10s;
 }
+
+
+
 </style>

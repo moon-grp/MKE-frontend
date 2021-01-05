@@ -1,6 +1,9 @@
 <template>
   <v-app dark>
     <div>
+
+      
+    
       <v-app-bar color="#FFFFFF" flat>
         <nuxt-link to="/frames">
           <div class="text-capitalize fnt">frames..</div>
@@ -25,6 +28,7 @@
         </nuxt-link>
       </v-app-bar>
       <v-main>
+       
         <v-container>
           <nuxt />
         </v-container>
@@ -34,7 +38,14 @@
 </template>
 
 <script>
+import Loading from '~/components/loading.vue'
+
+
 export default {
+  components: {
+    Loading
+    
+  },
   data() {
     return {
       clipped: false,
@@ -78,4 +89,5 @@ a {
   font-size: 20px;
   color: #6c63ff;
 }
+
 </style>

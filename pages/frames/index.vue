@@ -11,20 +11,51 @@
         </nuxt-link>
       </v-col>
     </v-row>
+    <loading  v-if="loading"/>
   </div>
 </template>
 
 <script>
+import Loading from '~/components/loading.vue'
 export default {
   layout: 'frames',
+  components: {
+    Loading,
+  },
+  data() {
+    return {
+      getProducts: '',
+      loading: false,
+    }
+  },
+  methods: {
+    async product() {
+      this.loading = true
+      try {
+        const res = await this.$axios.$get(
+          'https://mrkayenterprise.herokuapp.com/api/v1/user/viewproducts'
+        )
+        this.getProducts = res
+        this.loading = false
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  },
+  /*
   async asyncData({ $axios }) {
+    const loading = true
     const getProducts = await $axios.$get(
       'https://mrkayenterprise.herokuapp.com/api/v1/user/viewproducts'
     )
-
+    console.log(this.loading)
     console.log(getProducts)
 
-    return { getProducts }
+    return { getProducts, loading }
+  },
+ */
+  created() {
+    this.product()
   },
 }
 </script>
