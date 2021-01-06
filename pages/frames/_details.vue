@@ -1,18 +1,18 @@
 <template>
   <div class="productText">
-    <v-row>
+    <v-row class="mt-4">
       <v-col lg="8" md="8" sm="12">
         <div>
           <v-img
             max-height="450"
-            max-width="800"
+            max-width="600"
             contain
             :src="products.imgUrl"
           ></v-img>
         </div>
       </v-col>
-      <v-col lg="2" md="4" sm="12">
-        <div class="text-capitalize h2">{{ products.productname }}.</div>
+      <v-col lg="3" md="4" sm="12" class="mx-2">
+        <div class="text-capitalize h2 mt-2">{{ products.productname }}.</div>
 
         <div class="text-capitalize mt-2 body-1">
           {{ products.description }}
@@ -37,12 +37,12 @@
         </div>
         <div>
           <v-btn x-large color="#13274a" dark @click="getDetails">
-            proceed to buy {{ products.productname }}
+            proceed to buy
           </v-btn>
         </div>
       </v-col>
     </v-row>
-    <loading  v-if="loading"/>
+    <loading v-if="loading" />
   </div>
 </template>
 

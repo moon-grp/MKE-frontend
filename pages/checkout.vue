@@ -2,11 +2,17 @@
   <div>
     <v-row class="justify-center mt-6 fnt mb-8">
       <v-card class="mx-auto" min-width="500">
+        <v-row class="justify-center mt-4">
+          <div class="text-capitalize Text">delivery info.</div>
+        </v-row>
+           <v-row class="justify-center mt-2">
+          <v-img src="/dt.svg" width="80" height="100" contain></v-img>
+        </v-row>
         <v-text-field
           label="Name"
           outlined
           class="mx-8 mt-8 text-capitalize"
-          color="#6C63FF"
+          color="#13274a"
           v-model="name"
           :error-messages="nameError"
           @input="$v.name.$touch()"
@@ -17,7 +23,7 @@
           label="Email"
           outlined
           class="mx-8 mt-2 text-capitalize"
-          color="#6C63FF"
+          color="#13274a"
           v-model="email"
           :error-messages="emailError"
           @input="$v.email.$touch()"
@@ -28,7 +34,7 @@
           label="Phone Number"
           outlined
           class="mx-8 mt-2 text-capitalize"
-          color="#6C63FF"
+          color="#13274a"
           type="number"
           :error-messages="phoneNumberError"
           @input="$v.phoneNumber.$touch()"
@@ -41,7 +47,7 @@
           name="input-7-4"
           label="Address"
           class="mx-8 mt-2 text-capitalize"
-          color="#6C63FF"
+          color="#13274a"
           v-model="address"
           :error-messages="addressError"
           @input="$v.address.$touch()"
@@ -50,9 +56,8 @@
 
         <v-card-actions>
           <v-btn
-            outlined
             dark
-            color="#6C63FF"
+            color="#13274a"
             @click="openPaystack"
             :loading="loading"
             class="ml-6 mt-2 text-capitalize"
@@ -184,3 +189,27 @@ export default {
   
 }
 </script>
+
+
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 80px;
+}
+
+.imgh {
+  height: 50%;
+}
+.Text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 25px;
+  color: #13274a;
+}
+
+a {
+  text-decoration: none;
+}
+</style>
