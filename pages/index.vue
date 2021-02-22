@@ -16,8 +16,8 @@
       <v-img
         src="/mkep1.jpeg"
         contain
-        height="200"
-        width="200"
+        height="400"
+        width="400"
         class="position "
       >
       </v-img>

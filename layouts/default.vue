@@ -1,37 +1,54 @@
 <template>
   <v-app dark>
     <div>
+      <v-app-bar color="#13274a" height="100" flat class="pt-2 px-6">
+          <nuxt-link to="/frames">
+            <v-avatar size="90">
+              <v-img class="mx-2" src="/mkep1.jpeg"></v-img>
+            </v-avatar>
+          </nuxt-link>
 
-      
-    
-      <v-app-bar color="#13274a" flat>
-        <nuxt-link to="/frames">
-          <div class="text-capitalize fnt">Mr Kay Enterprise</div>
-        </nuxt-link>
-        <v-spacer></v-spacer>
-        <nuxt-link to="/frames">
-          <v-btn rounded color="#ecf4ff" dark text class="text-capitalize mx-2"
-            >frames</v-btn
-          >
-        </nuxt-link>
+          <v-spacer></v-spacer>
+          <nuxt-link to="/frames">
+            <v-btn
+              rounded
+              color="#ecf4ff"
+              dark
+              text
+              class="text-capitalize mx-2"
+              >frames</v-btn
+            >
+          </nuxt-link>
 
-        <nuxt-link to="/frames">
-          <v-btn rounded color="#ecf4ff" dark text class="text-capitalize mx-2"
-            >Entertainment</v-btn
-          >
-        </nuxt-link>
+          <nuxt-link to="/frames">
+            <v-btn
+              rounded
+              color="#ecf4ff"
+              dark
+              text
+              class="text-capitalize mx-2"
+              >Entertainment</v-btn
+            >
+          </nuxt-link>
 
-        <nuxt-link to="/Autos">
-          <v-btn rounded color="#ecf4ff" dark text class="text-capitalize mx-2"
-            >Autos</v-btn
-          >
-        </nuxt-link>
+          <nuxt-link to="/Autos">
+            <v-btn
+              rounded
+              color="#ecf4ff"
+              dark
+              text
+              class="text-capitalize mx-2"
+              >Autos</v-btn
+            >
+          </nuxt-link>
+          <v-spacer></v-spacer>
+          <nuxt-link to="/Autos">
+            <v-icon color="white"> mdi-cart-variant </v-icon>
+          </nuxt-link>
+        
       </v-app-bar>
       <v-main>
-       
-        
-          <nuxt />
-      
+        <nuxt />
       </v-main>
     </div>
   </v-app>
@@ -40,11 +57,9 @@
 <script>
 import Loading from '~/components/loading.vue'
 
-
 export default {
   components: {
-    Loading
-    
+    Loading,
   },
   data() {
     return {
@@ -89,5 +104,4 @@ a {
   font-size: 20px;
   color: #ecf4ff;
 }
-
 </style>

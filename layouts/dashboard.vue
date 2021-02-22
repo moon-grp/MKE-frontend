@@ -12,7 +12,7 @@
           >
         </nuxt-link>
 
-        <nuxt-link to="/">
+        <nuxt-link to="/admin/dashboard/orders">
           <v-btn rounded color="#6C63FF" dark text class="text-capitalize mx-2"
             >orders</v-btn
           >
