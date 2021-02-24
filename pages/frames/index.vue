@@ -1,17 +1,37 @@
 <template>
   <div>
-    <v-row class="mt-4">
-      <v-col  sm="4" xl="2" lg="3" md="3" xs="6" v-for="item in getProducts" :key="item._id.$oid">
-        <nuxt-link :to="'/frames/' + item._id.$oid">
-          <div class="productText my-2">
-            <v-img :src="item.imgUrl" height="200" contain> </v-img>
-            <div class="mt-2">{{ item.productname }}</div>
-            <div class="mt-1">₦ {{ item.frameprice }}</div>
-          </div>
-        </nuxt-link>
-      </v-col>
-    </v-row>
-    <loading  v-if="loading"/>
+    <v-container>
+      <v-row class="mt-4">
+        <v-col
+          sm="4"
+          xl="2"
+          lg="3"
+          md="3"
+          xs="6"
+          v-for="item in getProducts"
+          :key="item._id.$oid"
+        >
+          <nuxt-link :to="'/frames/' + item._id.$oid">
+            <v-card max-width="280" class="mx-6 mt-4" color="#ECECEC">
+              <v-row class="justify-center">
+                <div>
+                  <v-img :src="item.imgUrl" height="250" width="180" contain>
+                  </v-img>
+                </div>
+              </v-row>
+
+              <v-card-actions class="ca">
+                <div class="productText my-2">
+                  <div class="mt-2">{{ item.productname }}</div>
+                  <div class="mt-1">₦ {{ item.frameprice }}</div>
+                </div>
+              </v-card-actions>
+            </v-card>
+          </nuxt-link>
+        </v-col>
+      </v-row>
+    </v-container>
+    <loading v-if="loading" />
   </div>
 </template>
 
@@ -71,12 +91,19 @@ body {
   text-align: center;
   flex: 1 0 0px;
   max-width: 100%;
-  color: #000000;
+  color: #f2f2f2;
   font-family: 'Poppins', sans-serif;
   font-size: 12px;
 }
 
 a {
   text-decoration: none;
+}
+.ca {
+  background: #13274a;
+}
+
+.v-card {
+  border-radius: 35px 35px 35px 35px;
 }
 </style>
