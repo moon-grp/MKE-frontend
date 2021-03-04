@@ -1,60 +1,68 @@
 <template>
   <div class="productText">
-    <v-row class="mt-4">
-      <v-col lg="8" md="8" sm="12">
-        <div>
-          <!--      <v-img
+    <v-container>
+      <v-row class="mt-4">
+        <v-col lg="5" md="5" sm="12" class="pl-4">
+          <div>
+            <!--      <v-img
             max-height="450"
             max-width="600"
             contain
             :src="products.imgUrl"
           ></v-img> -->
 
-          <v-card max-width="280" class="mx-6 mt-4" color="#ECECEC">
-            <v-row class="justify-center">
-              <div>
-                <v-img :src="products.imgUrl" height="250" width="180" contain>
-                </v-img>
-              </div>
-            </v-row>
+            <v-card max-width="280" class="mx-6 mt-4" color="#ECECEC">
+              <v-row class="justify-center">
+                <div>
+                  <v-img
+                    :src="products.imgUrl"
+                    height="400"
+                    width="180"
+                    contain
+                  >
+                  </v-img>
+                </div>
+              </v-row>
 
-            <v-card-actions class="ca">
-             
-            </v-card-actions>
-          </v-card>
-        </div>
-      </v-col>
-      <v-col lg="3" md="4" sm="12" class="mx-2">
-        <div class="text-capitalize h2 mt-2">{{ products.productname }}.</div>
+              <v-card-actions class="ca"> </v-card-actions>
+            </v-card>
+          </div>
+        </v-col>
+        <v-col lg="6" md="6" sm="12" >
+          <h2 class="text-capitalize h2 mt-6 ti">{{ products.productname }}.</h2>
 
-        <div class="text-capitalize mt-2 body-1">
-          {{ products.description }}
-        </div>
-        <div class="text-capitalize mt-2 subtitle-1">
-          ₦{{ products.frameprice }}
-        </div>
+          <h5 class="text-capitalize mt-2 ti">
+            {{ products.description }}
+          </h5>
+          <h2 class="text-capitalize mt-2 t2">
+            {{ products.frameprice }} NGN
+          </h2>
 
-        <div class="text-capitalize mt-2 caption">
-          slash price: ₦{{ products.slashprice }}
-        </div>
+    <!--      <div class="text-capitalize mt-2 caption">
+            slash price: ₦{{ products.slashprice }}
+          </div> 
 
-        <div class="mt-2">
-          <v-slider
-            v-model="value"
-            label="How many?"
-            step="1"
-            thumb-label="always"
-            :thumb-size="18"
-            color="#13274a"
-          ></v-slider>
-        </div>
-        <div>
-          <v-btn x-large color="#13274a" dark @click="getDetails">
-            proceed to buy
-          </v-btn>
-        </div>
-      </v-col>
-    </v-row>
+          <div class="mt-2">
+            <v-slider
+              v-model="value"
+              label="How many?"
+              step="1"
+              thumb-label="always"
+              :thumb-size="18"
+              color="#13274a"
+            ></v-slider>
+          </div>  -->
+          <div>
+            <v-btn x-large rounded class="mt-2" color="#13274a" dark @click="getDetails" >
+              <v-icon left>
+                 mdi-cart-variant
+              </v-icon>
+              proceed to buy
+            </v-btn>
+          </div>
+        </v-col>
+      </v-row>
+    </v-container>
     <loading v-if="loading" />
   </div>
 </template>
@@ -111,6 +119,7 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -136,5 +145,26 @@ a {
 
 .v-card {
   border-radius: 35px 35px 35px 35px;
+}
+
+h2.ti{
+  font-family: 'Montserrat', sans-serif;
+  color: #2A2A2A;
+  letter-spacing: 0px;
+  font: normal;
+}
+
+h5.ti{
+font-family: 'Montserrat', sans-serif;
+  color: #2A2A2A;
+  letter-spacing: 0px;
+  font:x-small;
+}
+
+h2.t2{
+  font-family: 'Montserrat', sans-serif;
+  color: #2A2A2A;
+  letter-spacing: 0px;
+  font: normal;
 }
 </style>
