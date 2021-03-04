@@ -2,31 +2,22 @@
   <v-app dark>
     <div>
 
-      
-    
-      <v-app-bar color="#13274a" flat>
-        <nuxt-link to="/frames">
-          <div class="text-capitalize fnt">frames..</div>
-        </nuxt-link>
-        <v-spacer></v-spacer>
-        <nuxt-link to="/frames/collections">
-          <v-btn rounded color="#ecf4ff" dark text class="text-capitalize mx-2"
-            >collections</v-btn
-          >
-        </nuxt-link>
+        <v-app-bar color="#ffffff" height="100" flat class="pt-2 px-6">
+          <nuxt-link to="/frames">
+            <v-avatar size="60">
+              <v-img class="mx-2" src="/mkep1.jpeg"></v-img>
+            </v-avatar>
+          </nuxt-link>
 
-        <nuxt-link to="/frames">
-          <v-btn rounded color="#ecf4ff" dark text class="text-capitalize mx-2"
-            >build-up</v-btn
-          >
-        </nuxt-link>
+          <v-spacer></v-spacer>
+          
+          <v-spacer></v-spacer>
+          <nuxt-link to="/Autos">
+            <v-icon color="#13274a"> mdi-cart-variant </v-icon>
+          </nuxt-link>
+        
+      </v-app-bar>   
 
-        <nuxt-link to="/frames">
-          <v-btn rounded color="#ecf4ff" dark text class="text-capitalize mx-2"
-            >contact</v-btn
-          >
-        </nuxt-link>
-      </v-app-bar>
       <v-main>
        
         <v-container>

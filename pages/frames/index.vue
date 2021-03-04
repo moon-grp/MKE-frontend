@@ -1,6 +1,12 @@
 <template>
   <div>
     <v-container>
+      <div class="ml-6">
+        <h2 class="text-capitalize ti">
+          products
+        </h2>
+        <hr class="new4">
+      </div>
       <v-row class="mt-4">
         <v-col
           sm="4"
@@ -21,7 +27,7 @@
               </v-row>
 
               <v-card-actions class="ca">
-                <div class="productText my-2">
+                <div class="productText mb-2 ml-4">
                   <div class="mt-2">{{ item.productname }}</div>
                   <div class="mt-1">₦ {{ item.frameprice }}</div>
                 </div>
@@ -82,13 +88,13 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 body {
   font-family: 'Poppins', sans-serif;
   font-size: 10px;
 }
 .productText {
-  text-align: center;
   flex: 1 0 0px;
   max-width: 100%;
   color: #f2f2f2;
@@ -105,5 +111,16 @@ a {
 
 .v-card {
   border-radius: 35px 35px 35px 35px;
+}
+
+hr.new4 {
+  border: 1px solid #13274a;
+  width: 80px;
+}
+
+h2.ti{
+  font-family: 'Montserrat', sans-serif;
+  color: #2A2A2A;
+  letter-spacing: 2.2px;
 }
 </style>

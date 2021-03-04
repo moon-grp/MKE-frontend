@@ -3,12 +3,25 @@
     <v-row class="mt-4">
       <v-col lg="8" md="8" sm="12">
         <div>
-          <v-img
+          <!--      <v-img
             max-height="450"
             max-width="600"
             contain
             :src="products.imgUrl"
-          ></v-img>
+          ></v-img> -->
+
+          <v-card max-width="280" class="mx-6 mt-4" color="#ECECEC">
+            <v-row class="justify-center">
+              <div>
+                <v-img :src="products.imgUrl" height="250" width="180" contain>
+                </v-img>
+              </div>
+            </v-row>
+
+            <v-card-actions class="ca">
+             
+            </v-card-actions>
+          </v-card>
         </div>
       </v-col>
       <v-col lg="3" md="4" sm="12" class="mx-2">
@@ -115,5 +128,13 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.ca {
+  background: #13274a;
+}
+
+.v-card {
+  border-radius: 35px 35px 35px 35px;
 }
 </style>
