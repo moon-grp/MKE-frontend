@@ -3,7 +3,7 @@
     <v-container>
       <v-row class="mt-4">
         <v-col lg="5" md="5" sm="12" class="pl-4">
-          <div>
+          <div class="pl-10">
             <!--      <v-img
             max-height="450"
             max-width="600"
@@ -29,6 +29,7 @@
           </div>
         </v-col>
         <v-col lg="6" md="6" sm="12" >
+          <div class="pt-12">
           <h2 class="text-capitalize h2 mt-6 ti">{{ products.productname }}.</h2>
 
           <h5 class="text-capitalize mt-2 ti">
@@ -59,6 +60,7 @@
               </v-icon>
               proceed to buy
             </v-btn>
+          </div>
           </div>
         </v-col>
       </v-row>
@@ -151,20 +153,20 @@ h2.ti{
   font-family: 'Montserrat', sans-serif;
   color: #2A2A2A;
   letter-spacing: 0px;
-  font: normal;
+  font-size: xx-large;
 }
 
 h5.ti{
 font-family: 'Montserrat', sans-serif;
   color: #2A2A2A;
   letter-spacing: 0px;
-  font:x-small;
+  font: xx-small;
 }
 
 h2.t2{
   font-family: 'Montserrat', sans-serif;
   color: #2A2A2A;
   letter-spacing: 0px;
-  font: normal;
+  font: xx-large;
 }
 </style>

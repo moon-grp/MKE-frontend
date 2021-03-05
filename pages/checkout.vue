@@ -1,39 +1,46 @@
 <template>
   <div>
-    <v-row class="justify-center mt-6 fnt mb-8">
-      <v-card class="mx-auto" min-width="500">
-        <v-row class="justify-center mt-4">
-          <div class="text-capitalize Text">delivery info.</div>
-        </v-row>
-           <v-row class="justify-center mt-2">
-          <v-img src="/dt.svg" width="80" height="100" contain></v-img>
-        </v-row>
-        <v-text-field
-          label="Name"
-          outlined
-          class="mx-8 mt-8 text-capitalize"
-          color="#13274a"
-          v-model="name"
-          :error-messages="nameError"
-          @input="$v.name.$touch()"
-          @blur="$v.name.$touch()"
-        ></v-text-field>
+    <v-row class="justify-center mt-4 fnt mb-8">
+      <v-container>
+        <div class="ml-8">
+          <h2 class="text-capitalize ti">checkout</h2>
+          <hr class="new4" />
+        </div>
 
-        <v-text-field
-          label="Email"
-          outlined
-          class="mx-8 mt-2 text-capitalize"
-          color="#13274a"
-          v-model="email"
-          :error-messages="emailError"
-          @input="$v.email.$touch()"
-          @blur="$v.email.$touch()"
-        ></v-text-field>
 
-        <v-text-field
+        <v-row class="mt-4">
+          <v-col cols="12" sm="6" md="4">
+            <v-text-field
+              label="Name"
+              outlined
+              class="mx-8  text-capitalize"
+              color="#13274a"
+              v-model="name"
+              :error-messages="nameError"
+              @input="$v.name.$touch()"
+              @blur="$v.name.$touch()"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" sm="6" md="4">
+            <v-text-field
+              label="Email"
+              outlined
+              class="mx-8  text-capitalize"
+              color="#13274a"
+              v-model="email"
+              :error-messages="emailError"
+              @input="$v.email.$touch()"
+              @blur="$v.email.$touch()"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row>
+          <v-col cols="12" sm="6" md="4">
+               <v-text-field
           label="Phone Number"
           outlined
-          class="mx-8 mt-2 text-capitalize"
+          class="mx-8 text-capitalize"
           color="#13274a"
           type="number"
           :error-messages="phoneNumberError"
@@ -41,31 +48,41 @@
           @blur="$v.phoneNumber.$touch()"
           v-model="phoneNumber"
         ></v-text-field>
-
-        <v-textarea
+          </v-col>
+          
+          <v-col cols="12" sm="6" md="4">
+              <v-text-field
           outlined
-          name="input-7-4"
           label="Address"
-          class="mx-8 mt-2 text-capitalize"
+          class="mx-8  text-capitalize"
           color="#13274a"
           v-model="address"
           :error-messages="addressError"
           @input="$v.address.$touch()"
           @blur="$v.address.$touch()"
-        ></v-textarea>
-
-        <v-card-actions>
+        ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="ml-4">
+           <v-col cols="12" sm="6" md="8">
           <v-btn
             dark
             color="#13274a"
             @click="openPaystack"
             :loading="loading"
-            class="ml-6 mt-2 text-capitalize"
+            class=" mt-2 text-capitalize"
+            block
+            rounded
+            x-large
           >
-            pay
+            checkout
           </v-btn>
-        </v-card-actions>
-      </v-card>
+           </v-col>
+        </v-row>
+
+      </v-container>
+
+   
     </v-row>
     <v-snackbar v-model="snackbar" :timeout="timeout" color="success">
       {{ msg }}
@@ -103,6 +120,11 @@ export default {
       address: '',
       phoneNumber: '',
       name: '',
+      timeout:7000,
+      msg:"",
+      snackbar:false,
+      snackbarErr:false,
+      loading:false
     }
   },
   computed: {
@@ -184,13 +206,9 @@ export default {
       })
       handler.openIframe()
     },
-
   },
-  
 }
 </script>
-
-
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
@@ -211,5 +229,20 @@ body {
 
 a {
   text-decoration: none;
+}
+
+hr.new4 {
+  border: 1px solid #13274a;
+  width: 80px;
+}
+
+h2.ti {
+  font-family: 'Montserrat', sans-serif;
+  color: #2a2a2a;
+  letter-spacing: 2.2px;
+}
+
+.v-text-field{
+  border-radius: 40px;
 }
 </style>
