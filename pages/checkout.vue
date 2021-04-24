@@ -12,6 +12,7 @@
             <v-text-field
               label="Name"
               outlined
+              type="text"
               class="mx-8 text-capitalize"
               color="#13274a"
               v-model="name"
@@ -23,6 +24,7 @@
           <v-col cols="12" sm="6" md="4">
             <v-text-field
               label="Email"
+              type="email"
               outlined
               class="mx-8 text-capitalize"
               color="#13274a"
@@ -56,6 +58,7 @@
               class="mx-8 text-capitalize"
               color="#13274a"
               v-model="address"
+              type="text"
               :error-messages="addressError"
               @input="$v.address.$touch()"
               @blur="$v.address.$touch()"
@@ -121,6 +124,7 @@ export default {
       snackbar: false,
       snackbarErr: false,
       loading: false,
+      
     }
   },
   computed: {
@@ -163,8 +167,8 @@ export default {
         var address = this.address
         var qtr = this.details.qty
         var productname = this.details.productName
-       // var key = process.env.pAPI_KEY
-       var key ="pk_test_20beb29a9cd24d4c35105da9ac30711fd5978f3b"
+        var key = process.env.pAPI_KEY
+     //  var key ="pk_test_20beb29a9cd24d4c35105da9ac30711fd5978f3b"
 
         var handler = PaystackPop.setup({
           key: key,

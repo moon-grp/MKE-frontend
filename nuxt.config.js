@@ -32,12 +32,13 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
-    '@nuxtjs/dotenv',
+    
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/axios
+    '@nuxtjs/dotenv',
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
     '@neneos/nuxt-animate.css',
