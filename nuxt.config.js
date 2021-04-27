@@ -1,6 +1,10 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  env: {
+    BASE_URL: 'https://nuxtjs.org',
+    API_SECRET: '1234'
+  },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s - mrkayenterprise',
@@ -38,10 +42,11 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/dotenv',
+    
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
     '@neneos/nuxt-animate.css',
+    '@nuxtjs/dotenv',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -68,4 +73,11 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
+  privateRuntimeConfig: {
+    apiSecret: process.env.pAPI_KEY
+  },
+  publicRuntimeConfig: {
+    baseURL: 'https://nuxtjs.org'
+  },
+  
 }
