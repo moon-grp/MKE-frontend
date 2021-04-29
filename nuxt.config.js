@@ -1,10 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  env: {
-    BASE_URL: 'https://nuxtjs.org',
-    API_SECRET: '1234'
-  },
+  mode: 'universal',
+  target: 'static',
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s - mrkayenterprise',
