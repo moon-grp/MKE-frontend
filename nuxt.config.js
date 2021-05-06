@@ -72,10 +72,15 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
   privateRuntimeConfig: {
-    apiSecret: process.env.pAPI_KEY
+    myApp:{
+      publicTest:"public",
+      bothTest:"bpublic"
+    }
+
   },
   publicRuntimeConfig: {
-    baseURL: 'https://nuxtjs.org'
+    baseURL: 'https://nuxtjs.org',
+    olumide: process.env.pAPI_KEY
   },
   
 }

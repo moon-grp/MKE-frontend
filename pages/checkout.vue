@@ -126,6 +126,9 @@ export default {
       loading: false,
     }
   },
+  created(){
+    console.log(this.$config.olumide)
+  },
   computed: {
     ...mapState({
       details: (state) => state.productDetails,
@@ -166,7 +169,7 @@ export default {
         var address = this.address
         var qtr = this.details.qty
         var productname = this.details.productName
-        var key = process.env.pAPI_KEY
+        var key = this.$config.olumide
 
         //  var key ="pk_test_20beb29a9cd24d4c35105da9ac30711fd5978f3b"
 
