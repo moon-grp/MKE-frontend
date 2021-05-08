@@ -80,7 +80,7 @@ export default {
   },
   publicRuntimeConfig: {
     baseURL: 'https://nuxtjs.org',
-    olumide: process.env.pAPI_KEY
+    paystack: process.env.pAPI_KEY
   },
   
 }

@@ -169,14 +169,15 @@ export default {
         var address = this.address
         var qtr = this.details.qty
         var productname = this.details.productName
-        var key = this.$config.olumide
+        var amount = this.details.price + "00"
+        var key = this.$config.paystack
 
         //  var key ="pk_test_20beb29a9cd24d4c35105da9ac30711fd5978f3b"
 
         var handler = PaystackPop.setup({
           key: key,
           email: email,
-          amount: this.details.price,
+          amount: amount,
           ref: '' + Math.floor(Math.random() * 1000000000 + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
           metadata: {
             custom_fields: [
