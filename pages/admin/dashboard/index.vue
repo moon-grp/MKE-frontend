@@ -1,7 +1,15 @@
 <template>
   <div>
     <v-row class="mt-4">
-      <v-col cols="3" v-for="item in getProducts" :key="item._id.$oid">
+      <v-col
+        sm="4"
+        xl="2"
+        lg="3"
+        md="3"
+        xs="6"
+        v-for="item in getProducts"
+        :key="item._id.$oid"
+      >
         <v-card max-height="500">
           <v-img
             :src="item.imgUrl"
