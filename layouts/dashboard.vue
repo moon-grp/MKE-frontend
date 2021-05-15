@@ -7,23 +7,66 @@
         </nuxt-link>
         <v-spacer></v-spacer>
         <nuxt-link to="/admin/dashboard/createproduct">
-          <v-btn rounded color="#6C63FF" dark text class="text-capitalize mx-2"
+          <v-btn
+            rounded
+            color="#6C63FF"
+            dark
+            text
+            class="text-capitalize mx-2 hidden-sm-and-down"
             >create product</v-btn
           >
         </nuxt-link>
 
         <nuxt-link to="/admin/dashboard/orders">
-          <v-btn rounded color="#6C63FF" dark text class="text-capitalize mx-2"
+          <v-btn
+            rounded
+            color="#6C63FF"
+            dark
+            text
+            class="text-capitalize mx-2 hidden-sm-and-down"
             >orders</v-btn
           >
         </nuxt-link>
 
         <nuxt-link to="/">
-          <v-btn rounded color="#6C63FF" dark text class="text-capitalize mx-2"
+          <v-btn
+            rounded
+            color="#6C63FF"
+            dark
+            text
+            class="text-capitalize mx-2 hidden-sm-and-down"
             >analytics</v-btn
           >
         </nuxt-link>
+
+        <v-app-bar-nav-icon
+          @click.stop="drawer = !drawer"
+          class="hidden-md-and-up"
+        ></v-app-bar-nav-icon>
       </v-app-bar>
+
+      <v-navigation-drawer v-model="drawer" absolute temporary>
+        <v-list nav dense>
+          <v-list-item-group
+            v-model="group"
+            active-class="deep-purple--text text--accent-4"
+          >
+            <v-list-item>
+              <v-list-item-title>
+                <nuxt-link to="/admin/dashboard/createproduct">
+                  <div class="text-capitalize navT">create product</div>
+                </nuxt-link>
+                  <nuxt-link to="/admin/dashboard/orders">
+                  <div class="text-capitalize navT">orders</div>
+                </nuxt-link>
+                  <nuxt-link to="#">
+                  <div class="text-capitalize navT">analytics</div>
+                </nuxt-link>
+              </v-list-item-title>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-navigation-drawer>
       <v-main>
         <v-container>
           <nuxt />
@@ -40,6 +83,7 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
+       group: null,
       items: [
         {
           icon: 'mdi-apps',
@@ -77,5 +121,8 @@ a {
   font-family: 'Poppins', sans-serif;
   font-size: 20px;
   color: #6c63ff;
+}
+.navT {
+  color: #13274a;
 }
 </style>
