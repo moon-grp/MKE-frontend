@@ -188,6 +188,7 @@ export default {
   layout: 'dashboard',
   data() {
     return {
+      getProducts: '',
       dialogEdit: false,
       dialogDelete: false,
       snackbar: false,
@@ -210,7 +211,7 @@ export default {
       file: [],
     }
   },
-  async asyncData({ $axios }) {
+/*async asyncData({ $axios }) {
     const getProducts = await $axios.$get(
       'https://mrkayenterprise.herokuapp.com/api/v1/admin/viewproducts'
     )
@@ -218,8 +219,24 @@ export default {
     console.log(getProducts)
 
     return { getProducts }
+  }, */
+   created() {
+    this.product()
   },
   methods: {
+     async product() {
+      this.loading = true
+      try {
+        const res = await this.$axios.$get(
+               'https://mrkayenterprise.herokuapp.com/api/v1/admin/viewproducts'
+        )
+        console.log(res)
+        this.getProducts = res
+        this.loading = false
+      } catch (error) {
+        console.log(error)
+      }
+    },
     async deleteProduct() {
       try {
         this.dialogDelete = false

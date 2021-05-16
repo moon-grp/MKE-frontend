@@ -11,6 +11,7 @@
             <th class="text-left">Product Name</th>
             <th class="text-left">Qty</th>
             <th class="text-left">Delivered</th>
+            <th class="text-left">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -22,6 +23,17 @@
             <td>{{ item.ProductName }}</td>
             <td>{{ item.Quantity }}</td>
             <td>{{ item.delivered }}</td>
+            <td>
+              <v-btn
+                v-if="item.delivered != true"
+                text
+                class="text-capitalize"
+                color="primary"
+                @click="pOrder(item._id.$oid, item.CustomerEmail)"
+              >
+                process order
+              </v-btn>
+            </td>
           </tr>
         </tbody>
       </template>
@@ -74,6 +86,23 @@ export default {
     return { getProducts }
   },
   methods: {
+    async pOrder(id, email) {
+      try {
+        const res = await this.$axios.$post(
+          `https://mrkayenterprise.herokuapp.com/api/v1/user/processorder/${id}`,
+          {
+            orderEmail: email,
+          }
+        )
+        this.msg = 'Customer mailed on order progress...'
+        this.snackbar = true
+        location.reload()
+      } catch (error) {
+        console.log(error.response.data)
+        this.msg = error.response.data
+        this.snackbarErr = true
+      }
+    },
     async deleteProduct() {
       try {
         this.dialogDelete = false

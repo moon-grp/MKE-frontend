@@ -37,6 +37,7 @@
         </v-col>
       </v-row>
     </v-container>
+    
     <loading v-if="loading" />
   </div>
 </template>
