@@ -2,7 +2,7 @@
   <div class="productText">
     <v-container class="hidden-sm-and-down">
       <v-row class="mt-4">
-        <v-col lg="5" md="5" sm="12" class="pl-4 ">
+        <v-col lg="5" md="5" sm="12" class="pl-4">
           <div class="pl-10">
             <!--      <v-img
             max-height="450"
@@ -28,18 +28,20 @@
             </v-card>
           </div>
         </v-col>
-        <v-col lg="6" md="6" sm="12" >
+        <v-col lg="6" md="6" sm="12">
           <div class="pt-12">
-          <h2 class="text-capitalize h2 mt-6 ti">{{ products.productname }}.</h2>
+            <h2 class="text-capitalize h2 mt-6 ti">
+              {{ products.productname }}.
+            </h2>
 
-          <h5 class="text-capitalize mt-2 ti">
-            {{ products.description }}
-          </h5>
-          <h2 class="text-capitalize mt-2 t2">
-            {{ products.frameprice }} NGN
-          </h2>
+            <h5 class="text-capitalize mt-2 ti">
+              {{ products.description }}
+            </h5>
+            <h2 class="text-capitalize mt-2 t2">
+              {{ products.frameprice }} NGN
+            </h2>
 
-    <!--      <div class="text-capitalize mt-2 caption">
+            <!--      <div class="text-capitalize mt-2 caption">
             slash price: ₦{{ products.slashprice }}
           </div> 
 
@@ -53,61 +55,63 @@
               color="#13274a"
             ></v-slider>
           </div>  -->
-          <div>
-            <v-btn x-large rounded class="mt-2" color="#13274a" dark @click="getDetails" >
-              <v-icon left>
-                 mdi-cart-variant
-              </v-icon>
-              proceed to buy
-            </v-btn>
-          </div>
+            <div>
+              <v-btn
+                x-large
+                rounded
+                class="mt-2"
+                color="#13274a"
+                dark
+                @click="getDetails"
+              >
+                <v-icon left> mdi-cart-variant </v-icon>
+                proceed to buy
+              </v-btn>
+            </div>
           </div>
         </v-col>
       </v-row>
     </v-container>
     <div class="hidden-md-and-up">
-       <v-row class="mt-2">
-        <v-col cols="12"  >
-
-            <!--      <v-img
+      <v-row class="mt-2">
+        <v-col cols="12">
+          <!--      <v-img
             max-height="450"
             max-width="600"
             contain
             :src="products.imgUrl"
           ></v-img> -->
 
-            <v-card max-width="280" class="mt-4 mx-auto" color="#ECECEC">
-              <v-row class="justify-center">
-                <div>
-                  <v-img
-                    :src="products.imgUrl"
-                    height="400"
-                    width="180"
-                    contain
-                  >
-                  </v-img>
-                </div>
-              </v-row>
+          <v-card max-width="280" class="mt-2 mx-auto" color="#ECECEC">
+            <v-row class="justify-center">
+              <div>
+                <v-img :src="products.imgUrl" height="400" width="180" contain>
+                </v-img>
+              </div>
+            </v-row>
 
-
-
-              <v-card-actions class="ca"> </v-card-actions>
-
-            </v-card>
-      
+            <v-card-actions class="ca"> </v-card-actions>
+          </v-card>
         </v-col>
-        <v-col cols="12" >
-         <div class="ml-6">
-          <h2 class="text-capitalize h2 mt-4  ti">{{ products.productname }}.</h2>
+        <v-col cols="12">
+          <v-row class="justify-center">
+            <h2 class="text-capitalize h2 mt-2 ti">
+              {{ products.productname }}.
+            </h2>
+          </v-row>
 
-          <h5 class="text-capitalize mt-2 ti">
-            {{ products.description }}
-          </h5>
-          <h2 class="text-capitalize mt-2 t2">
-            {{ products.frameprice }} NGN
-          </h2>
+          <v-row class="justify-center">
+            <h5 class="text-capitalize mt-2 ti">
+              {{ products.description }}
+            </h5>
+          </v-row>
 
-    <!--      <div class="text-capitalize mt-2 caption">
+          <v-row class="justify-center">
+            <h2 class="text-capitalize mt-2 t2">
+              {{ products.frameprice }} NGN
+            </h2>
+          </v-row>
+          <!--      <div class="text-capitalize mt-2 caption">
             slash price: ₦{{ products.slashprice }}
           </div> 
 
@@ -121,15 +125,19 @@
               color="#13274a"
             ></v-slider>
           </div>  -->
-          <div>
-            <v-btn x-large rounded class="mt-2" color="#13274a" dark @click="getDetails" >
-              <v-icon left>
-                 mdi-cart-variant
-              </v-icon>
+          <v-row class="justify-center">
+            <v-btn
+              x-large
+              rounded
+              class="mt-2"
+              color="#13274a"
+              dark
+              @click="getDetails"
+            >
+              <v-icon left> mdi-cart-variant </v-icon>
               proceed to buy
             </v-btn>
-          </div>
-         </div>
+          </v-row>
         </v-col>
       </v-row>
     </div>
@@ -217,23 +225,23 @@ a {
   border-radius: 35px 35px 35px 35px;
 }
 
-h2.ti{
+h2.ti {
   font-family: 'Montserrat', sans-serif;
-  color: #2A2A2A;
+  color: #2a2a2a;
   letter-spacing: 0px;
   font-size: xx-large;
 }
 
-h5.ti{
-font-family: 'Montserrat', sans-serif;
-  color: #2A2A2A;
+h5.ti {
+  font-family: 'Montserrat', sans-serif;
+  color: #2a2a2a;
   letter-spacing: 0px;
   font: xx-small;
 }
 
-h2.t2{
+h2.t2 {
   font-family: 'Montserrat', sans-serif;
-  color: #2A2A2A;
+  color: #2a2a2a;
   letter-spacing: 0px;
   font: xx-large;
 }
