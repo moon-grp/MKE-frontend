@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row class="justify-center mt-4 fnt mb-8">
-      <v-container>
+      <v-container class="hidden-sm-and-down">
         <div class="ml-8">
           <h2 class="text-capitalize ti">checkout</h2>
           <hr class="new4" />
@@ -65,7 +65,91 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-row class="ml-4">
+        <v-row class="">
+          <v-col cols="12" sm="6" md="8">
+            <v-btn
+              dark
+              color="#13274a"
+              @click="openPaystack"
+              :loading="loading"
+              class="mt-2 text-capitalize"
+              block
+              rounded
+              x-large
+            >
+              checkout
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <!-- mobile container-->
+
+      <v-container class="hidden-md-and-up">
+        <div class="ml-8">
+          <h2 class="text-capitalize ti">checkout</h2>
+          <hr class="new4" />
+        </div>
+
+        <v-row class="mt-4">
+          <v-col cols="12" sm="6" md="4">
+            <v-text-field
+              label="Name"
+              outlined
+              type="text"
+              class="mx-8 text-capitalize"
+              color="#13274a"
+              v-model="name"
+              :error-messages="nameError"
+              @input="$v.name.$touch()"
+              @blur="$v.name.$touch()"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" sm="6" md="4">
+            <v-text-field
+              label="Email"
+              type="email"
+              outlined
+              class="mx-8 text-capitalize"
+              color="#13274a"
+              v-model="email"
+              :error-messages="emailError"
+              @input="$v.email.$touch()"
+              @blur="$v.email.$touch()"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row>
+          <v-col cols="12" sm="6" md="4">
+            <v-text-field
+              label="Phone Number"
+              outlined
+              class="mx-8 text-capitalize"
+              color="#13274a"
+              type="number"
+              :error-messages="phoneNumberError"
+              @input="$v.phoneNumber.$touch()"
+              @blur="$v.phoneNumber.$touch()"
+              v-model="phoneNumber"
+            ></v-text-field>
+          </v-col>
+
+          <v-col cols="12" sm="6" md="4">
+            <v-text-field
+              outlined
+              label="Address"
+              class="mx-8 text-capitalize"
+              color="#13274a"
+              v-model="address"
+              type="text"
+              :error-messages="addressError"
+              @input="$v.address.$touch()"
+              @blur="$v.address.$touch()"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="mx-auto">
           <v-col cols="12" sm="6" md="8">
             <v-btn
               dark
@@ -126,7 +210,7 @@ export default {
       loading: false,
     }
   },
-  created(){
+  created() {
     console.log(this.$config.olumide)
   },
   computed: {
@@ -169,7 +253,7 @@ export default {
         var address = this.address
         var qtr = this.details.qty
         var productname = this.details.productName
-        var amount = this.details.price + "00"
+        var amount = this.details.price + '00'
         var key = this.$config.paystack
 
         //  var key ="pk_test_20beb29a9cd24d4c35105da9ac30711fd5978f3b"
