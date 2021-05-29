@@ -156,7 +156,7 @@
               color="#13274a"
               @click="openPaystack"
               :loading="loading"
-              class="mt-2 text-capitalize"
+              class=" text-capitalize"
               block
               rounded
               x-large
