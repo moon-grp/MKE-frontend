@@ -15,7 +15,7 @@
               <v-row class="justify-center">
                 <div>
                   <v-img
-                    :src="products.mediaUrl"
+                    :src="products.mediaurl"
                     height="400"
                     width="180"
                     contain
@@ -31,14 +31,17 @@
         <v-col lg="6" md="6" sm="12">
           <div class="pt-12">
             <h2 class="text-capitalize h2 mt-6 ti">
-              {{ products.productname }}.
+              {{ products.carname }}.
             </h2>
 
             <h5 class="text-capitalize mt-2 ti">
               {{ products.description }}
             </h5>
             <h2 class="text-capitalize mt-2 t2">
-              {{ products.frameprice }} NGN
+              {{ products.carprice }} NGN
+            </h2>
+            <h2 class="text-capitalize mt-2 t2">
+           <b> Commission:</b>  {{ products.commission }} 
             </h2>
 
             <!--      <div class="text-capitalize mt-2 caption">
@@ -65,7 +68,7 @@
                 @click="getDetails"
               >
                 <v-icon left> mdi-cart-variant </v-icon>
-                proceed to buy
+                {{products.reflink}}
               </v-btn>
             </div>
           </div>
@@ -85,7 +88,7 @@
           <v-card max-width="280" class="mt-2 mx-auto" color="#ECECEC">
             <v-row class="justify-center">
               <div>
-                <v-img :src="products.mediaUrl" height="400" width="180" contain>
+                <v-img :src="products.mediaurl" height="400" width="180" contain>
                 </v-img>
               </div>
             </v-row>
@@ -96,7 +99,7 @@
         <v-col cols="12">
           <v-row class="justify-center">
             <h2 class="text-capitalize h2 mt-2 ti">
-              {{ products.productname }}.
+              {{ products.carname }}.
             </h2>
           </v-row>
 
@@ -108,7 +111,7 @@
 
           <v-row class="justify-center">
             <h2 class="text-capitalize mt-2 t2">
-              {{ products.frameprice }} NGN
+              {{ products.carprice }} NGN
             </h2>
           </v-row>
           <!--      <div class="text-capitalize mt-2 caption">
@@ -135,7 +138,7 @@
               @click="getDetails"
             >
               <v-icon left> mdi-cart-variant </v-icon>
-              proceed to buy
+              {{products.reflink}}
             </v-btn>
           </v-row>
         </v-col>

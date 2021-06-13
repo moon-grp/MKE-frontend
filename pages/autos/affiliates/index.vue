@@ -3,9 +3,7 @@
     <v-row>
       <v-col cols="6" md="6" sm="12">
         <div id="boxSpace">
-          <div class="trs fnt mb-5">
-            sign in<span class="coll"></span>
-          </div>
+          <div class="trs fnt mb-5">sign in<span class="coll"></span></div>
 
           <v-row>
             <v-col>
@@ -116,8 +114,12 @@ export default {
             }
           )
           console.log(res)
-          localStorage.setItem('token', JSON.stringify(res.token))
-         
+          // localStorage.setItem('token', JSON.stringify(res.token))
+          this.$cookies.set('token', res.token, {
+            path: '/',
+            maxAge: 60 * 60 * 24 * 7,
+          })
+
           this.msg = res.message
           this.snackbar = true
           this.$router.push({ name: 'autos-affiliates-garage' })
